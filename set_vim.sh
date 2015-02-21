@@ -1,9 +1,7 @@
 #!/bin/bash
 
 mkdir -p $HOME/.vim
-cd $HOME/.vim
-git clone https://github.com/kien/ctrlp.vim.git bundle/ctrlp.vim
-
+git clone https://github.com/kien/ctrlp.vim.git $HOME/.vim/bundle/ctrlp.vim
 git clone https://github.com/gmarik/vundle.git $HOME/.vim/bundle/vundle
 
 cat > .vimrc << EOF
