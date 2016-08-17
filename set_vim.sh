@@ -1,8 +1,11 @@
 #!/bin/bash
 
 mkdir -p $HOME/.vim
-git clone https://github.com/kien/ctrlp.vim.git $HOME/.vim/bundle/ctrlp.vim
-git clone https://github.com/gmarik/vundle.git $HOME/.vim/bundle/vundle
+
+# ref. https://github.com/VundleVim/Vundle.vim
+git clone https://github.com/VundleVim/Vundle.vim.git $HOME/.vim/bundle/Vundle.vim
+#git clone https://github.com/kien/ctrlp.vim.git $HOME/.vim/bundle/ctrlp.vim
+#git clone https://github.com/gmarik/vundle.git $HOME/.vim/bundle/vundle
 
 cat > .vimrc << EOF
 set ai
@@ -14,37 +17,41 @@ set binary noeol
 set backspace=indent,eol,start
 set tabstop=4 shiftwidth=4 softtabstop=4 noexpandtab
 set foldmethod=marker
-set runtimepath^=~/.vim/bundle/ctrlp.vim
+" set runtimepath^=~/.vim/bundle/ctrlp.vim
 syntax on
 
 
 filetype off
-set rtp+=~/.vim/bundle/vundle
-call vundle#rc()
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 
-" let Vundle manage Vundle
-" required!
-Bundle 'gmarik/vundle'
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
+
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
 
 " My Bundles here:
 "
 " original repos on github
-Bundle 'jshint.vim'
-Bundle 'pangloss/vim-javascript'
-Bundle 'jade.vim'
-Bundle 'vim-coffee-script'
-Bundle 'vim-stylus'
-Bundle 'surround.vim'
-Bundle 'tComment'
-Bundle 'JavaScript-Indent'
-Bundle 'snipMate'
-Bundle 'Tagbar'
-Bundle 'node.js'
-"Bundle 'Command-T'
-Bundle 'FuzzFinder'
-Bundle 'The-NERD-tree'
-Bundle 'Syntastic'
-Bundle 'ekini-dark-colorscheme'
+Plugin 'L9'
+Plugin 'jshint.vim'
+Plugin 'javascript.vim'
+Plugin 'jade.vim'
+Plugin 'vim-coffee-script'
+Plugin 'vim-stylus'
+Plugin 'surround.vim'
+Plugin 'tComment'
+Plugin 'JavaScript-Indent'
+Plugin 'snipMate'
+Plugin 'Tagbar'
+Plugin 'node.js'
+"Plugin 'Command-T'
+"Plugin 'FuzzFinder'
+Plugin 'ctrlp.vim'
+Plugin 'The-NERD-tree'
+Plugin 'Syntastic'
+Plugin 'ekini-dark-colorscheme'
 
 
 filetype plugin indent on
