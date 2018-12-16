@@ -4,63 +4,74 @@ mkdir -p $HOME/.vim
 
 # ref. https://github.com/VundleVim/Vundle.vim
 git clone https://github.com/VundleVim/Vundle.vim.git $HOME/.vim/bundle/Vundle.vim
-#git clone https://github.com/kien/ctrlp.vim.git $HOME/.vim/bundle/ctrlp.vim
-#git clone https://github.com/gmarik/vundle.git $HOME/.vim/bundle/vundle
+mkdir -p $HOME/.vim/autoload ~/.vim/bundle && curl -LSso $HOME/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
 
-cat > .vimrc << EOF
+cat > $HOME/.vimrc << EOF
 set ai
 set nu
-set nocompatible
 set vb
 set showmatch
 set binary noeol
 set backspace=indent,eol,start
 set tabstop=4 shiftwidth=4 softtabstop=4 noexpandtab
 set foldmethod=marker
-" set runtimepath^=~/.vim/bundle/ctrlp.vim
+
+execute pathogen#infect()
+
 syntax on
+set nocompatible              " be iMproved, required
+filetype off                  " required
 
-
-filetype off
+" set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
-
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
 
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 
 " My Bundles here:
-"
+
 " original repos on github
-Plugin 'L9'
-Plugin 'jshint.vim'
-Plugin 'javascript.vim'
-Plugin 'jade.vim'
-Plugin 'vim-coffee-script'
-Plugin 'vim-stylus'
-Plugin 'surround.vim'
-Plugin 'tComment'
-Plugin 'JavaScript-Indent'
-Plugin 'snipMate'
-Plugin 'Tagbar'
-Plugin 'node.js'
-"Plugin 'Command-T'
-"Plugin 'FuzzFinder'
-Plugin 'ctrlp.vim'
-Plugin 'The-NERD-tree'
-Plugin 'Syntastic'
-Plugin 'ekini-dark-colorscheme'
+Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-surround'
+Plugin 'jistr/vim-nerdtree-tabs'
+Plugin 'scrooloose/syntastic'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'pangloss/vim-javascript'
+Plugin 'shutnik/jshint2.vim'
+Plugin 'digitaltoad/vim-pug'
+Plugin 'moll/vim-node'
+Plugin 'majutsushi/tagbar'
+Plugin 'MarcWeber/vim-addon-mw-utils'
+Plugin 'tomtom/tlib_vim'
+Plugin 'garbas/vim-snipmate'
+Plugin 'honza/vim-snippets'
+Plugin 'wavded/vim-stylus'
 
+call vundle#end()            " required
+filetype plugin indent on    " required
 
-filetype plugin indent on
-" au filetype javascript set dictionary+=$HOME/.vim/dict/node.dict
+" To ignore plugin indent changes, instead use:
+"filetype plugin on
+"
+" Brief help
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+"
+" see :h vundle for more details or wiki for FAQ
+" Put your non-Plugin stuff after this line
 
 let g:JSLintHighlightErrorLine = 0
-map <C-n> :NERDTreeToggle<CR>
+
+map <C-n> :NERDTreeTabsToggle<CR>
+
 map <F8> :TagbarToggle<CR>
+
 map <F4> :execute "vimgrep /" . expand("<cword>") . "/j **" <Bar> cw<CR>
+
 nnoremap ,b :CommandTBuffer<CR>
 
 " ctrlp
