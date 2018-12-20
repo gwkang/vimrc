@@ -18,7 +18,14 @@ set foldmethod=marker
 
 execute pathogen#infect()
 
+filetype plugin indent on " Automatically detect file types.
 syntax on
+set history=1000
+set mouse=a
+set mousehide
+set showmode " Display the current mode
+set cursorline " Hightlight current line
+scriptencoding utf-8
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
